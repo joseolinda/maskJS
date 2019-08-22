@@ -34,5 +34,13 @@
             opcoes.precisao = opcoes.zeroCentavos ? 0 : opcoes.casasDecimais;
             return opcoes;
         },
+        adicionarPlaceholderNaSaida = function(saida, index, placeholder) {
+            for (; index < saida.length; index++) {
+                if(saida[index] === NUMERO || saida[index] === LETRA || saida[index] === LETRA_E_NUMERO) {
+                    saida[index] = placeholder;
+                }
+            }
+            return saida;
+        }
     return alert();
 });
