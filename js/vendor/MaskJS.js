@@ -42,5 +42,32 @@
             }
             return saida;
         }
-    return alert();
+        ;
+
+    // Objeto principal
+    const MaskJS = function (el) {
+        if( !el || ! el instanceof HTMLElement ) {
+            throw new Error("");
+        }
+        const elementos = ("length" in el) ? (el.length ? el : []) : [el];
+        return new ClassMascarar(elementos);
+
+    };
+
+    // Classe das mascaras
+    const ClassMascarar = function(elementos) {
+        this.elementos = elementos;
+    };
+
+    ClassMascarar.prototype.desvincularMascara = function() {
+        for (let i = 0, len = this.elementos.length; i < len; i++) {
+            this.elementos[i].saidaExibida = "";
+            this.elementos[i].onkeyup = false;
+            this.elementos[i].onkeydown = false;
+
+            if (this.elementos[i].value.length) {
+                this.elementos[i].value = this.elementos[i].value.replace(/\D/g, '');
+            }
+        }
+    };
 });
