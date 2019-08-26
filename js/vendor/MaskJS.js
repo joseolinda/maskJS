@@ -113,6 +113,19 @@
         this.vincularMascara("paraNumero");
     };
         
+    MaskJS.paraPadrao = function(valor, opcoes) {
+        let padrao = (typeof opcoes === 'object' ? opcoes.padrao : opcoes),
+            padraoChars = padrao.replace(/\W/g, ''),
+            saida = padrao.split(""),
+            valores = valor.toString().replace(/\W/g, ""),
+            valoresChars = valores.replace(/\W/g, ''),
+            index = 0,
+            i,
+            tamanhoSaida = saida.length,
+            placeholder = (typeof opcoes === 'object' ? opcoes.placeholder : undefined)
+        ;
+    };
+        
     ClassMascarar.prototype.mascararPadrao = function(padrao) {
         this.opcoes = {padrao: padrao};
         this.vincularMascara("paraPadrao");
