@@ -124,6 +124,37 @@
             tamanhoSaida = saida.length,
             placeholder = (typeof opcoes === 'object' ? opcoes.placeholder : undefined)
         ;
+            
+        for (i = 0; i < tamanhoSaida; i++) {
+            // Reached the end of input
+            if (index >= valores.length) {
+                if (padraoChars.length == valoresChars.length) {
+                    return saida.join("");
+                }
+                else if ((placeholder !== undefined) && (padraoChars.length > valoresChars.length)) {
+                    return adicionarPlaceholderNaSaida(saida, i, placeholder).join("");
+                }
+                else {
+                    break;
+                }
+            }
+            // Remaining chars in input
+            else{
+                if ((saida[i] === NUMERO && valores[index].match(/[0-9]/)) ||
+                    (saida[i] === LETRA && valores[index].match(/[a-zA-Z]/)) ||
+                    (saida[i] === LETRA_E_NUMERO && valores[index].match(/[0-9a-zA-Z]/))) {
+                    saida[i] = valores[index++];
+                } else if (saida[i] === NUMERO || saida[i] === LETRA || saida[i] === LETRA_E_NUMERO) {
+                    if(placeholder !== undefined){
+                        return adicionarPlaceholderNaSaida(saida, i, placeholder).join("");
+                    }
+                    else{
+                        return saida.slice(0, i).join("");
+                    }
+                }
+            }
+        }
+        return saida.join("").substr(0, i);
     };
         
     ClassMascarar.prototype.mascararPadrao = function(padrao) {
