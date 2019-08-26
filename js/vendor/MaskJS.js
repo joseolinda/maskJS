@@ -112,6 +112,11 @@
         this.opcoes = {};
         this.vincularMascara("paraNumero");
     };
+        
+    ClassMascarar.prototype.mascararPadrao = function(padrao) {
+        this.opcoes = {padrao: padrao};
+        this.vincularMascara("paraPadrao");
+    };    
 
     return MaskJS;
 
